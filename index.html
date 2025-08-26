@@ -1,255 +1,135 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قرعه‌کشی ماهانه - باشگاه مشتریان شهروند</title>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js" defer></script>
-    <script src="script.js" defer></script>
+<meta charset="UTF-8" />
+<title>تخفیفات فروشگاه شهروند صادقیه</title>
+<style>
+  body {
+    font-family: Tahoma, sans-serif;
+    background: #f7faff;
+    padding: 2rem;
+    color: #333;
+  }
+  h1 {
+    text-align: center;
+    color: #0077cc;
+    margin-bottom: 2rem;
+  }
+  .product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .product-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 220px;
+    text-align: center;
+    transition: box-shadow 0.3s ease;
+  }
+  .product-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+  .product-card img {
+    width: 150px;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .product-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #004080;
+    margin-bottom: 0.5rem;
+  }
+  .discount-percent {
+    background: #d4f4e4;
+    color: #207f4e;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+  }
+  .original-price {
+    text-decoration: line-through;
+    color: #7a7a7a;
+    margin-bottom: 0.3rem;
+  }
+  .discounted-price {
+    color: #d42c21;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+  }
+  .discount-date span {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 0.3rem;
+  }
+</style>
 </head>
 <body>
-    <canvas id="confetti-canvas"></canvas>
-    <header class="main-header">
-        <div class="container header-container">
-            <a href="/">
-                </a>
-            </div>
-    </header>
-    <main>
-        <section class="hero">
-            <video class="hero-video" autoplay loop muted playsinline poster="https://picsum.photos/1400/600?random=1">
-                <source src="https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4" type="video/mp4">
-            </video>
-            <div class="hero-content">
-                <p>شما نیز می توانید یکی از برندگان ما باشید</p>
-                <a href="#current-lottery" class="btn btn-primary">جوایز این دوره</a>
-            </div>
-        </section>
-        <section id="current-lottery" class="current-lottery">
-            <div class="container">
-                <h2>قرعه‌کشی ویژه مرداد ۱۴۰۴</h2>
-                <div class="lottery-box">
-                    <div class="lottery-details">
-                        <h3>جوایز این دوره:</h3>
-                        <p class="prize">
-                            <strong>۵ جایزه ۲۰ میلیون تومانی</strong>
-                            <br>
-                            <strong>۲۰ جایزه ۵ میلیون تومانی</strong>
-                        </p>
-                        <p>زمان باقی‌مانده جهت شرکت در قرعه کشی:</p>
-                        <div id="countdown" class="countdown">
-                            <div class="countdown-item"><span id="days">00</span><small>روز</small></div>
-                            <div class="countdown-item"><span id="hours">00</span><small>ساعت</small></div>
-                            <div class="countdown-item"><span id="minutes">00</span><small>دقیقه</small></div>
-                            <div class="countdown-item"><span id="seconds">00</span><small>ثانیه</small></div>
-                        </div>
-                        <button id="participate-btn" class="btn btn-primary btn-full-width">شرکت میکنم / افزایش شانس</button>
-                    </div>
-                    <div class="lottery-image"><img src="https://picsum.photos/400/300?random=2" alt="جایزه قرعه کشی"></div>
-                </div>
-            </div>
-        </section>
-        <section id="how-to" class="how-to">
-            <div class="container">
-                <h2>چگونه در قرعه‌کشی شرکت کنم؟</h2>
-                <div class="steps-container">
-                    <div class="step step-highlighted">
-                        <svg class="step-icon" width="64" height="64" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                        <h4>عضویت در باشگاه</h4>
-                        <p>اگر عضو نیستید، به سادگی و رایگان در باشگاه مشتریان شهروند عضو شوید.</p>
-                        <button id="join-club-btn" class="btn btn-secondary btn-full-width">ثبت‌نام رایگان</button>
-                    </div>
-                    <div class="step">
-                        <svg class="step-icon" width="64" height="64" viewBox="0 0 24 24"><path fill="currentColor" d="M18.5 2H5.5A3.5 3.5 0 0 0 2 5.5v13A3.5 3.5 0 0 0 5.5 22h13a3.5 3.5 0 0 0 3.5-3.5v-13A3.5 3.5 0 0 0 18.5 2zM12 11c-2.76 0-5 2.24-5 5H5.5c0-4.07 3.06-7.44 7-7.93v2.93z"/></svg>
-                        <h4>خرید از فروشگاه</h4>
-                        <p>از هر یک از فروشگاه‌های شهروند خرید کنید و با <strong>ارائه کد اشتراک</strong> خرید خود را ثبت کنید.</p>
-                    </div>
-                    <div class="step">
-                        <svg class="step-icon" width="64" height="64" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        <h4>کسب امتیاز و شانس</h4>
-                        <p>به ازای هر ۵۰۰ هزار تومان خرید، یک شانس قرعه‌کشی دریافت کنید.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="winners" class="past-winners">
-            <div class="container">
-                <h2>برندگان دوره‌های گذشته</h2>
-                <p class="section-subtitle">اعتماد شما، بزرگترین سرمایه ماست. با برندگان خوش‌شانس دوره‌های قبل آشنا شوید.</p>
-                <div class="winners-grid">
-                       <div class="winner-card"><div class="card-icon">🏆</div><h3>قرعه‌کشی اسفند ۱۴۰۳</h3><a href="https://club.shahrvand.ir/Winners3.aspx" target="_blank" class="btn btn-secondary">لیست کامل برندگان</a></div>
-                       <div class="winner-card"><div class="card-icon">🏆</div><h3>قرعه‌کشی بهمن ۱۴۰۳</h3><a href="https://club.shahrvand.ir/Winners2.aspx" target="_blank" class="btn btn-secondary">لیست کامل برندگان</a></div>
-                       <div class="winner-card"><div class="card-icon">🏆</div><h3>قرعه‌کشی دی ۱۴۰۳</h3><a href="https://club.shahrvand.ir/Winners1.aspx" target="_blank" class="btn btn-secondary">لیست کامل برندگان</a></div>
-                </div>
-                 <div class="video-section">
-                    <h2> مراسم قرعه‌کشی‌ قبلی</h2>
-                    <div id="54938303314"><script type="text/JavaScript" src="https://www.aparat.com/embed/sfocs00?data[rnddiv]=54938303314&data[responsive]=yes"></script></div>
-                </div>
-            </div>
-        </section>
-        <section class="faq">
-            <div class="container">
-                <h2>سوالات متداول</h2>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <div class="faq-question">هر شانس قرعه‌کشی معادل چند تومان خرید یا امتیاز است؟</div>
-                        <div class="faq-answer">
-                            <p>به ازای هر ۵۰۰ هزار تومان خرید و یا تبدیل هر ۲۰ امتیاز باشگاه مشتریان، یک شانس برای شرکت در قرعه‌کشی همان ماه به شما تعلق می‌گیرد.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">آیا شانس‌های استفاده نشده به دوره بعد منتقل می‌شوند؟</div>
-                        <div class="faq-answer">
-                            <p>خیر، شانس‌ها برای هر دوره قرعه‌کشی به صورت مجزا محاسبه می‌شوند و قابل انتقال به ماه‌های بعدی نیستند.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">از کجا می‌توانم تعداد شانس‌هایم را ببینم؟</div>
-                        <div class="faq-answer">
-                            <p>با ورود به حساب کاربری خود در وب‌سایت باشگاه مشتریان شهروند، می‌توانید تعداد شانس‌های فعال خود را مشاهده کنید.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question"> نحوه اطلاع‌رسانی به برندگان چگونه است؟</div>
-                        <div class="faq-answer">
-                            <p> اطلاع‌رسانی به برندگان از طریق پیامک صورت می‌گیرد و همچنین لیست کامل برندگان در همین صفحه و شبکه‌های اجتماعی شهروند منتشر خواهد شد</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">چگونه می‌توانم جایزه خود را دریافت کنم؟</div>
-                        <div class="faq-answer">
-                            <p>برندگان محترم می‌توانند با در دست داشتن کارت شناسایی معتبر، برای دریافت جایزه خود به دفتر مرکزی شهروند، واقع در میدان آرژانتین، جنب فروشگاه بیهقی مراجعه کنند.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer class="main-footer">
-        <div class="container"><p>© ۱۴۰۴ - تمامی حقوق برای فروشگاه‌های زنجیره‌ای شهروند محفوظ است.</p></div>
-    </footer>
 
-    <div id="lottery-modal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-button">×</span>
-            <div class="modal-body">
-                <div class="modal-step active" id="step-1">
-                    <div class="modal-header"><h3>احراز هویت</h3></div>
-                    <p>برای شروع، لطفاً کد ملی یا شماره اشتراک خود را وارد کنید.</p>
-                    <form id="auth-form">
-                        <div class="form-group">
-                            <label for="user-id">کد ملی یا شماره اشتراک</label>
-                            <input type="text" id="user-id" placeholder="کد ملی یا شماره اشتراک..." required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-full-width">بررسی شانس‌ها</button>
-                    </form>
-                </div>
-                <div class="modal-step" id="step-loading">
-                    <div class="spinner"></div>
-                    <p>در حال بررسی اطلاعات...</p>
-                </div>
-                <div class="modal-step" id="step-2">
-                    <div class="modal-header"><h3>انتخاب تعداد شانس</h3></div>
-                    <p id="chance-display">تعداد شانس‌های شما: <span>۱۲</span></p>
-                    <form id="chance-form">
-                        <div class="form-group">
-                            <label for="chance-select">چند شانس استفاده شود؟</label>
-                            <select id="chance-select" required>
-                                <option value="">انتخاب کنید</option>
-                                <option value="1">۱ شانس</option>
-                                <option value="2">۲ شانس</option>
-                                <option value="3">۳ شانس</option>
-                                <option value="4">۴ شانس</option>
-                                <option value="5">۵ شانس</option>
-                                <option value="max">حداکثر شانس</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-full-width">تایید و ارسال کد</button>
-                    </form>
-                </div>
-                <div class="modal-step" id="step-3">
-                    <div class="modal-header"><h3>تایید پیامکی</h3></div>
-                    <p>کد تایید به شماره شما (***۰۹۱۲۱۲۳) ارسال شد. لطفاً آن را وارد کنید.</p>
-                    <form id="verify-form">
-                        <div class="form-group">
-                            <label for="sms-code">کد تایید</label>
-                            <input type="text" id="sms-code" placeholder="کد ۵ رقمی" required maxlength="5" style="text-align:center; letter-spacing: 5px;">
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-full-width">تایید نهایی</button>
-                    </form>
-                </div>
-                <div class="modal-step" id="step-4">
-                    <div class="modal-header"><h3>تبریک</h3></div>
-                    <div class="success-icon">🎉</div>
-                    <p>شما با موفقیت در قرعه‌کشی شرکت کردید.</p>
-                    <div class="share-buttons">
-                        <a href="https://t.me/shahrvandchainstore" target="_blank" rel="noopener noreferrer" class="telegram" title="عضویت در کانال تلگرام شهروند">
-                            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="m9.417 15.181-.397 5.584c.568 0 .814-.244 1.109-.537l2.663-2.545 5.518 4.041c1.012.564 1.725.267 1.998-.931L22.03 5.552c.272-1.21-.488-1.699-1.546-1.108l-17.36 6.733c-1.14.434-1.14 1.023-.2 1.25l5.212 1.623L19.417 7.5c.343-.225.654-.108.374.135L9.417 15.181Z"/></svg>
-                            تلگرام
-                        </a>
-                        <a href="https://www.instagram.com/shahrvand" target="_blank" rel="noopener noreferrer" class="instagram" title="مشاهده صفحه اینستاگرام شهروند">
-                            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.2,5.2 0 0,1 16.2,21.4H7.8C4.6,21.4 2,18.8 2,15.6V7.8C2,4.6 4.6,2 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg>
-                            اینستاگرام
-                        </a>
-                    </div>
-                    <button id="finish-btn" class="btn btn-secondary btn-full-width">پایان</button>
-                </div>
+<h1>تخفیفات داغ و جذاب فروشگاه شهروند صادقیه</h1>
+
+<div id="product-list" class="product-container">در حال بارگذاری...</div>
+
+<script>
+  const url = 'https://script.google.com/macros/s/AKfycbzCLDoFbbuaZPEbRsdK_6XnC2w0diHZgIB9gJ6Dh4ssUUmYhUKmjJwgviDE0ADyZiZI/exec';
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) throw new Error('خطا در دریافت اطلاعات: ' + response.status);
+      return response.json();
+    })
+    .then(data => {
+      const container = document.getElementById('product-list');
+      container.innerHTML = '';
+
+      data.forEach(item => {
+        let discount = item.discount;
+        if (typeof discount === 'number' && discount <= 1) {
+          discount = (discount * 100).toFixed(0) + '%';
+        } else if (typeof discount === 'string') {
+          discount = discount.trim();
+        }
+
+        let imgUrl = item.imgUrl || '';
+        if(imgUrl.startsWith('https://imgur.com') && !imgUrl.match(/\.(jpg|jpeg|png)$/)){
+          imgUrl = imgUrl + '.jpg';
+        }
+
+        // فرمت جداکننده هزارگان برای قیمت‌ها
+        const formattedOriginalPrice = Number(item.originalPrice.toString().replace(/,/g, '')).toLocaleString('fa-IR');
+        const formattedDiscountedPrice = Number(item.discountedPrice.toString().replace(/,/g, '')).toLocaleString('fa-IR');
+
+        container.innerHTML += `
+          <div class="product-card">
+            <img src="${imgUrl}" alt="${item.title}" />
+            <div class="product-title">${item.title}</div>
+            <div class="discount-percent">${discount} تخفیف</div>
+            <div class="original-price">${formattedOriginalPrice} تومان</div>
+            <div class="discounted-price">${formattedDiscountedPrice} تومان</div>
+            <div class="discount-date">
+              <span>تاریخ شروع: ${item.startDate}</span>
+              <span>تاریخ پایان: ${item.endDate}</span>
             </div>
-        </div>
-    </div>
-    
-    <div id="register-modal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-button">×</span>
-            <div class="modal-body">
-                <div class="modal-header"><h3>ثبت نام</h3></div>
-                <p class="section-subtitle">ثبت نام در باشگاه مشتریان شهروند</p>
-                <form id="register-form">
-                    <div class="form-group">
-                        <label for="reg-national-id">کد ملی</label>
-                        <input type="text" id="reg-national-id" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-first-name">نام</label>
-                        <input type="text" id="reg-first-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-last-name">نام خانوادگی</label>
-                        <input type="text" id="reg-last-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-gender">جنسیت</label>
-                        <select id="reg-gender" required>
-                            <option value="">انتخاب کنید</option>
-                            <option value="male">مرد</option>
-                            <option value="female">زن</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-mobile">موبایل</label>
-                        <input type="tel" id="reg-mobile" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-dob">تاریخ تولد (1366/11/18)</label>
-                        <input type="text" id="reg-dob" placeholder="YYYY/MM/DD" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="reg-store">نزدیکترین فروشگاه</label>
-                        <select id="reg-store" required>
-                            <option value="">انتخاب کنید</option>
-                            <option value="store1">شعبه ۱</option>
-                            <option value="store2">شعبه ۲</option>
-                            <option value="store3">شعبه ۳</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full-width">ثبت نام</button>
-                    <button type="button" class="btn btn-success btn-full-width" style="background-color: var(--success-color);">ثبت نام حقوقی</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div id="live-feed" class="live-feed"></div>
+          </div>
+        `;
+      });
+
+      if (data.length === 0) {
+        container.innerHTML = '<p>هیچ محصولی برای نمایش وجود ندارد.</p>';
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      document.getElementById('product-list').innerHTML = '<p>خطا در بارگذاری اطلاعات محصولات.</p>';
+    });
+</script>
+
 </body>
 </html>
